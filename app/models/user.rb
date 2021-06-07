@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  VALID_EMAIL = /\A\w+@\w+\.[a-z]+\z/
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
   has_many :events
 
@@ -7,8 +10,11 @@ class User < ApplicationRecord
             presence: true,
             length: { maximum: 35 }
 
-  validates :email,
-            uniqueness: true,
-            length: { maximum: 255 },
-            format: { with: VALID_EMAIL }
+  before_validation :set_name, on: :create
+
+  private
+
+  def set_name
+    self.name = "Товарисч №#{rand(777)}" if name.blank?
+  end
 end
