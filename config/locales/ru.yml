@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+    models:
+      user:
+      event:
+    attributes:
+      user:
+        email: 'Логин (email)'
+        name: 'Ваше имя'
+        password: 'Пароль'
+        password_confirmation: 'Подтвеждение пароля'
+      event:
+        title: 'Событие'
+        address: 'Адрес'
+        datetime: 'Время проведения'
+        description: 'Описание события'
+        
+
